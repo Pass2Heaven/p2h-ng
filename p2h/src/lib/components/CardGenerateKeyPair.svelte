@@ -1,18 +1,29 @@
 <script lang="ts">
+	import { exportKeyPairToFile } from '$lib/utils/crypto';
+
 	import KeyPair from '$lib/models/KeyPair';
 	import Button from './ui/button/button.svelte';
 	import CardContent from './ui/card/card-content.svelte';
 	import CardDescription from './ui/card/card-description.svelte';
+	import CardFooter from './ui/card/card-footer.svelte';
 	import CardHeader from './ui/card/card-header.svelte';
 	import CardTitle from './ui/card/card-title.svelte';
 	import Card from './ui/card/card.svelte';
 	import Input from './ui/input/input.svelte';
 	import Label from './ui/label/label.svelte';
 
-	let generatedKeyPair: KeyPair;
+	let keyPair: KeyPair | null;
 
 	function generateKeyPair() {
-		generatedKeyPair = new KeyPair();
+		keyPair = new KeyPair();
+	}
+
+	function exportKeyPair() {
+		exportKeyPairToFile(keyPair as KeyPair);
+	}
+
+	function clearKeyPair() {
+		keyPair = null;
 	}
 </script>
 
@@ -25,8 +36,16 @@
 		<Button on:click={generateKeyPair}>Generate</Button>
 
 		<Label for="generatedPrivateKey">Private key</Label>
-		<Input value={generatedKeyPair?.privateKeyHex()} id="generatedPrivateKey" disabled />
+		<Input value={keyPair?.privateKeyHex()} id="generatedPrivateKey" disabled />
 		<Label for="generatedPublicKey">Public key</Label>
-		<Input value={generatedKeyPair?.publicKeyHex()} id="generatedPublicKey" disabled />
+		<Input value={keyPair?.publicKeyHex()} id="generatedPublicKey" disabled />
 	</CardContent>
+	<CardFooter class="flex justify-between gap-4">
+		<Button on:click={exportKeyPair} variant="secondary" disabled={!keyPair} class="w-1/2"
+			>Export</Button
+		>
+		<Button on:click={clearKeyPair} variant="outline" disabled={!keyPair} class="w-1/2"
+			>Clear</Button
+		>
+	</CardFooter>
 </Card>

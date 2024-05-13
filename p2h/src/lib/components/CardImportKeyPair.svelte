@@ -17,6 +17,10 @@
 	function importKeyPair() {
 		keyPairStore.generateFromHex(privateKeyHex);
 	}
+
+	function ejectKeyPair() {
+		keyPairStore.clear();
+	}
 </script>
 
 <Card>
@@ -34,6 +38,6 @@
 	</CardContent>
 	<CardFooter class="gap-4">
 		<Button on:click={importKeyPair} class="grow basis-0">Import key</Button>
-		<Button class="grow basis-0" variant={'outline'}>Eject keys</Button>
+		<Button on:click={ejectKeyPair} class="grow basis-0" variant={'outline'}>Eject keys</Button>
 	</CardFooter>
 </Card>

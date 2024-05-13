@@ -6,8 +6,9 @@ export default class KeyPair {
 	_publicKey: Uint8Array;
 
 	constructor(privateKeyHex?: string) {
-		this._privateKey =
-			privateKeyHex !== undefined ? hexToBytes(privateKeyHex) : ed25519.utils.randomPrivateKey();
+		this._privateKey = !privateKeyHex
+			? ed25519.utils.randomPrivateKey()
+			: hexToBytes(privateKeyHex);
 		this._publicKey = ed25519.getPublicKey(this._privateKey);
 	}
 
