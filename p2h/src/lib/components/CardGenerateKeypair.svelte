@@ -8,13 +8,7 @@
 	import Input from './ui/input/input.svelte';
 	import Label from './ui/label/label.svelte';
 
-	import KeyPair from '$lib/types/KeyPair';
-
-	let keyPair: KeyPair;
-
-	function newKeyPair() {
-		keyPair = new KeyPair();
-	}
+	import { keyPairStore } from '$lib/stores/keyPairStore';
 </script>
 
 <Card>
@@ -23,11 +17,11 @@
 		<CardDescription>Be aware! Keys are erased when you restart the page.</CardDescription>
 	</CardHeader>
 	<CardContent class="flex flex-col gap-4">
-		<Button on:click={() => newKeyPair()}>Generate</Button>
+		<Button on:click={keyPairStore.generate}>Generate</Button>
 
 		<Label for="generatedPrivateKey">Private key</Label>
-		<Input value={keyPair?.privateKeyHex()} id="generatedPrivateKey" disabled />
+		<Input value={$keyPairStore?.privateKeyHex()} id="generatedPrivateKey" disabled />
 		<Label for="generatedPublicKey">Public key</Label>
-		<Input value={keyPair?.publicKeyHex()} id="generatedPublicKey" disabled />
+		<Input value={$keyPairStore?.publicKeyHex()} id="generatedPublicKey" disabled />
 	</CardContent>
 </Card>

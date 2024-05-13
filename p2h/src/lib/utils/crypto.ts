@@ -1,4 +1,4 @@
-import type KeyPair from '$lib/types/KeyPair';
+import type KeyPair from '$lib/models/KeyPair';
 
 function exportKeyPairToFile(kp: KeyPair) {
 	const blob = new Blob([kp.toJson()], { type: 'application/json' });
