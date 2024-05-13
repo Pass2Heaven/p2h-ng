@@ -32,7 +32,7 @@
 		<CardTitle>Generate key pair</CardTitle>
 		<CardDescription>Be aware! Keys are erased when you restart the page.</CardDescription>
 	</CardHeader>
-	<CardContent class="flex flex-col gap-4">
+	<CardContent class="grid gap-4">
 		<Button on:click={generateKeyPair}>Generate</Button>
 
 		<Label for="generatedPrivateKey">Private key</Label>
@@ -40,12 +40,8 @@
 		<Label for="generatedPublicKey">Public key</Label>
 		<Input value={keyPair?.publicKeyHex()} id="generatedPublicKey" disabled />
 	</CardContent>
-	<CardFooter class="flex justify-between gap-4">
-		<Button on:click={exportKeyPair} variant="secondary" disabled={!keyPair} class="w-1/2"
-			>Export</Button
-		>
-		<Button on:click={clearKeyPair} variant="outline" disabled={!keyPair} class="w-1/2"
-			>Clear</Button
-		>
+	<CardFooter class="grid grid-cols-2 gap-4">
+		<Button on:click={exportKeyPair} variant="secondary" disabled={!keyPair}>Export</Button>
+		<Button on:click={clearKeyPair} variant="outline" disabled={!keyPair}>Clear</Button>
 	</CardFooter>
 </Card>

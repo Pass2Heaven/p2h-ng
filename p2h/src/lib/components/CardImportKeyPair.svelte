@@ -30,14 +30,14 @@
 			Be aware! Keys are not persisted and will be ejected when you refresh the page.
 		</CardDescription>
 	</CardHeader>
-	<CardContent class="flex flex-col gap-4">
+	<CardContent class="grid gap-4">
 		<Label for="importedPrivateKey">Your private key</Label>
 		<Input bind:value={privateKeyHex} id="importedPrivateKey" />
 		<Label for="retrievedPublicKey">Your private key</Label>
 		<Input value={$keyPairStore?.publicKeyHex()} id="retrievedPublicKey" disabled />
 	</CardContent>
-	<CardFooter class="gap-4">
-		<Button on:click={importKeyPair} class="grow basis-0">Import key</Button>
-		<Button on:click={ejectKeyPair} class="grow basis-0" variant={'outline'}>Eject keys</Button>
+	<CardFooter class="grid grid-cols-2 gap-4">
+		<Button on:click={importKeyPair}>Import key</Button>
+		<Button on:click={ejectKeyPair} variant={'outline'}>Eject keys</Button>
 	</CardFooter>
 </Card>

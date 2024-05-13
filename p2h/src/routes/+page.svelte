@@ -4,6 +4,12 @@
 	import CardSendWill from '$lib/components/CardSendWill.svelte';
 </script>
 
-<CardGenerateKeypair />
-<CardImportKeyPair />
-<CardSendWill />
+<div class="grid gap-4">
+	<div class="grid grid-cols-2 gap-4">
+		<CardGenerateKeypair />
+		<CardImportKeyPair />
+	</div>
+	<div class="">
+		<CardSendWill />
+	</div>
+</div>
