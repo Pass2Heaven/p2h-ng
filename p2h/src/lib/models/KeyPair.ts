@@ -1,12 +1,13 @@
 import { ed25519 } from '@noble/curves/ed25519';
-import { bytesToHex } from '@noble/curves/abstract/utils';
+import { bytesToHex, hexToBytes } from '@noble/curves/abstract/utils';
 
 export default class KeyPair {
 	_privateKey: Uint8Array;
 	_publicKey: Uint8Array;
 
-	constructor() {
-		this._privateKey = ed25519.utils.randomPrivateKey();
+	constructor(privateKeyHex?: string) {
+		this._privateKey =
+			privateKeyHex !== undefined ? hexToBytes(privateKeyHex) : ed25519.utils.randomPrivateKey();
 		this._publicKey = ed25519.getPublicKey(this._privateKey);
 	}
 

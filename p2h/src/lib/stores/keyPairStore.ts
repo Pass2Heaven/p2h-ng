@@ -8,6 +8,7 @@ function createKeyPairStore() {
 	return {
 		subscribe,
 		generate: () => set(new KeyPair()),
+		generateFromHex: (privateKeyHex: string) => set(new KeyPair(privateKeyHex)),
 		clear: () => set(null)
 	};
 }
