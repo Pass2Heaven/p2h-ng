@@ -1,9 +1,10 @@
 <script lang="ts">
 	import Logo from '$lib/components/svg/logo.svelte';
+	import WalletProviders from '$lib/components/WalletProviders.svelte';
 </script>
 
-<nav class="flex items-center justify-items-start">
-	<div class="mr-4 max-w-[250px]"><Logo /></div>
+<nav class="md:justify-items-star flex flex-col items-center gap-y-2 md:flex-row">
+	<div class="mr-4 max-w-[200px]"><Logo /></div>
 	<div class="space-x-4 lg:space-x-6">
 		<a
 			href="/"
@@ -24,5 +25,7 @@
 			About
 		</a>
 	</div>
-	<div class="ml-auto flex items-center space-x-4">Wallet placeholder</div>
+	<div class="flex items-center space-x-4 md:ml-auto">
+		<WalletProviders />
+	</div>
 </nav>
