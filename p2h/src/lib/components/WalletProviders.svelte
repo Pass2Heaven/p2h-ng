@@ -48,4 +48,6 @@
 	{:else}
 		<Button on:click={() => handleDisconnect(activeProvider)}>Disconnect</Button>
 	{/if}
+{:else}
+	<Button href="https://metamask.io/" target="_blank">Download MetaMask</Button>
 {/if}
