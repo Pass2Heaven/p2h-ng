@@ -22,4 +22,16 @@ const formatChainAsNum = (chainIdHex: string) => {
 	return chainIdNum;
 };
 
-export { handleConnect };
+async function handleDisconnect(providerWithInfo: EIP6963ProviderDetail) {
+	await providerWithInfo.provider.request({
+		method: 'wallet_revokePermissions',
+		params: [
+			{
+				eth_accounts: {}
+			}
+		]
+	});
+	activeAccount.set(undefined);
+}
+
+export { handleConnect, handleDisconnect };

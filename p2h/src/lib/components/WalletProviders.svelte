@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { handleConnect } from '$lib/utils/providers';
+	import { handleConnect, handleDisconnect } from '$lib/utils/providers';
 
 	import { providers } from '$lib/stores/ethProviders';
 	import { activeAccount } from '$lib/stores/activeAccount';
@@ -39,9 +39,13 @@
 	<Badge variant="outline">{$activeAccount.account}</Badge>
 {/if}
 
-{#if $providers.length > 0 && $activeAccount === undefined}
-	<Button on:click={() => handleConnect(activeProvider)}
-		>Connect {activeProvider.info.name}
-		<img src={activeProvider.info.icon} alt="Provider icon" class="ml-2 h-6 w-auto" /></Button
-	>
+{#if $providers.length > 0}
+	{#if $activeAccount === undefined}
+		<Button on:click={() => handleConnect(activeProvider)}
+			>Connect {activeProvider.info.name}
+			<img src={activeProvider.info.icon} alt="Provider icon" class="ml-2 h-6 w-auto" /></Button
+		>
+	{:else}
+		<Button on:click={() => handleDisconnect(activeProvider)}>Disconnect</Button>
+	{/if}
 {/if}
