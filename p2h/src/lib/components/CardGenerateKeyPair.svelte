@@ -2,6 +2,7 @@
 	import { exportKeyPairToFile } from '$lib/utils/crypto';
 
 	import KeyPair from '$lib/models/KeyPair';
+
 	import Button from './ui/button/button.svelte';
 	import CardContent from './ui/card/card-content.svelte';
 	import CardDescription from './ui/card/card-description.svelte';
@@ -11,6 +12,7 @@
 	import Card from './ui/card/card.svelte';
 	import Input from './ui/input/input.svelte';
 	import Label from './ui/label/label.svelte';
+	import Copy from 'lucide-svelte/icons/copy';
 
 	let keyPair: KeyPair | null;
 
@@ -25,6 +27,10 @@
 	function clearKeyPair() {
 		keyPair = null;
 	}
+
+	function privateKeyToClipboard() {
+		navigator.clipboard.writeText(keyPair!.privateKeyHex());
+	}
 </script>
 
 <Card>
@@ -36,7 +42,16 @@
 		<Button on:click={generateKeyPair}>Generate</Button>
 
 		<Label for="generatedPrivateKey">Private key</Label>
-		<Input value={keyPair?.privateKeyHex()} id="generatedPrivateKey" disabled />
+		<div class="flex gap-2">
+			<Input value={keyPair?.privateKeyHex()} id="generatedPrivateKey" disabled />
+			<Button
+				variant="outline"
+				size="icon"
+				class="w-12"
+				on:click={privateKeyToClipboard}
+				disabled={!keyPair}><Copy class="h-4 w-4" /></Button
+			>
+		</div>
 		<Label for="generatedPublicKey">Public key</Label>
 		<Input value={keyPair?.publicKeyHex()} id="generatedPublicKey" disabled />
 	</CardContent>
