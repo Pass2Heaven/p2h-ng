@@ -5,7 +5,7 @@
 </script>
 
 <div class="grid gap-4">
-	<div class="grid grid-cols-2 gap-4">
+	<div class="grid gap-4 md:grid-cols-2">
 		<CardGenerateKeypair />
 		<CardImportKeyPair />
 	</div>
