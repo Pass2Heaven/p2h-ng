@@ -1,7 +1,11 @@
 <script lang="ts">
+	import type { PageData } from './$types';
+
 	import CardGenerateKeypair from '$lib/components/CardGenerateKeyPair.svelte';
 	import CardImportKeyPair from '$lib/components/CardImportKeyPair.svelte';
 	import CardSendWill from '$lib/components/CardSendWill.svelte';
+
+	export let data: PageData;
 </script>
 
 <div class="grid gap-4">
@@ -10,6 +14,6 @@
 		<CardImportKeyPair />
 	</div>
 	<div class="">
-		<CardSendWill />
+		<CardSendWill data={data.form} />
 	</div>
 </div>

@@ -1,5 +1,4 @@
 <script lang="ts">
-	import KeyPair from '$lib/models/KeyPair';
 	import { keyPairStore } from '$lib/stores/keyPairStore';
 
 	import Button from './ui/button/button.svelte';
