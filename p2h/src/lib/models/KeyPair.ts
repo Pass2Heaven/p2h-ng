@@ -1,4 +1,4 @@
-import { ed25519 } from '@noble/curves/ed25519';
+import { secp256k1 } from '@noble/curves/secp256k1';
 import { bytesToHex, hexToBytes } from '@noble/curves/abstract/utils';
 
 export default class KeyPair {
@@ -7,9 +7,9 @@ export default class KeyPair {
 
 	constructor(privateKeyHex?: string) {
 		this._privateKey = !privateKeyHex
-			? ed25519.utils.randomPrivateKey()
+			? secp256k1.utils.randomPrivateKey()
 			: hexToBytes(privateKeyHex);
-		this._publicKey = ed25519.getPublicKey(this._privateKey);
+		this._publicKey = secp256k1.getPublicKey(this._privateKey);
 	}
 
 	privateKey() {

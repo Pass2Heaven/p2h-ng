@@ -1,7 +1,8 @@
 import { json } from '@sveltejs/kit';
 
-import { upload } from '$lib/apillon';
+// import { upload } from '$lib/apillon';
 
 export function POST() {
-	return json(upload());
+	return json({});
+	// return json(upload());
 }
